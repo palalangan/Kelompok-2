@@ -1,4 +1,4 @@
-# Kelompok-2
+# Kelompok-2_Back End Web Development/C
 Pala'langan, Radocen Chrisnov (Ketua)
 Janis, Reysa Jeremia
 Maabuat, Christian Friendly
