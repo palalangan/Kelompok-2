@@ -84,6 +84,24 @@ app.put("/users/:name", (req, res) => {
   return res.json(usr);
 });
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Penanganan Routing 404 (Gunakan format json untuk menampilkan pesan error)
+app.use((req, res, next) => {
+  res.json({
+    status: "error",
+    message: "resource tidak ditemukan",
+  });
+});
+
+//Penanganan Error (Gunakan format json untuk menampilkan pesan error)
+const errorHandling = (err, req, res, next) => {
+  res.json({
+    status: "error",
+    message: "terjadi kesalahan pada server",
+  });
+};
+
 app.listen(port, () =>
   console.log(`Server is running at http://localhost:${port}`)
 );
