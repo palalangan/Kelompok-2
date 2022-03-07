@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const app = express();
 const port = 3000;
-let usr = require('./users')
+let usr = require("./users");
 const { json } = require("express/lib/response");
 
 //Morgan untuk mencatat log
@@ -42,6 +42,21 @@ app.get("/users/:name", (req, res) => {
   } else {
     return res.json(result);
   }
+});
+
+//3. POST: /users (JADI)
+app.post("/users", (req, res) => {
+  if (!req.body.name) {
+    return res.status(400).send({
+      message: "Masukkan data yang akan di tambahkan",
+    });
+  }
+  const nil = {
+    id: usr.length + 1,
+    name: req.body.name,
+  };
+  usr.push(nil);
+  return res.send(usr);
 });
 
 app.listen(port, () =>
