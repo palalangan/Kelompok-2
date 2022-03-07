@@ -59,6 +59,31 @@ app.post("/users", (req, res) => {
   return res.send(usr);
 });
 
+//4. PUT: /users/:name
+app.put("/users/:name", (req, res) => {
+  const newName = req.body.name;
+  const nama = usr.filter((val) => {
+    return val.name.toLocaleLowerCase() === req.params.name.toLocaleLowerCase();
+  });
+
+  if (nama.length === 0) {
+    return res.json({
+      message: "Data tidak ditemukan",
+    });
+  } else if (!req.body.name) {
+    return res.json({
+      message: "Request body kosong atau tidak ada data yang dimasukkan",
+    });
+  } else {
+    usr.forEach((val) => {
+      if (val.name.toLowerCase() === req.params.name.toLowerCase()) {
+        val.name = newName;
+      }
+    });
+  }
+  return res.json(usr);
+});
+
 app.listen(port, () =>
   console.log(`Server is running at http://localhost:${port}`)
 );
