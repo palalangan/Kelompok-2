@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const app = express();
 const port = 3000;
-let usr = require("./users");
+let usr = require('./users')
 const { json } = require("express/lib/response");
 
 //Morgan untuk mencatat log
@@ -43,3 +43,7 @@ app.get("/users/:name", (req, res) => {
     return res.json(result);
   }
 });
+
+app.listen(port, () =>
+  console.log(`Server is running at http://localhost:${port}`)
+);
