@@ -84,7 +84,14 @@ app.put("/users/:name", (req, res) => {
   return res.json(usr);
 });
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//5. DELETE: /users/:name
+app.delete("/users/:name", (req, res) => {
+  usr = usr.filter((val) => {
+    return val.name.toLocaleLowerCase() !== req.params.name.toLocaleLowerCase();
+  });
+  return res.json(usr);
+});
+
 
 //Penanganan Routing 404 (Gunakan format json untuk menampilkan pesan error)
 app.use((req, res, next) => {
@@ -105,3 +112,7 @@ const errorHandling = (err, req, res, next) => {
 app.listen(port, () =>
   console.log(`Server is running at http://localhost:${port}`)
 );
+
+
+
+
