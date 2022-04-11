@@ -26,9 +26,25 @@ router.get("/users/:id", async (req, res) => {
     res.send({ status: "error", message: error.message });
   }
 });
-//Menambah user
 
-//Mengupdate user
+//Menambah user
+router.post("/users", async (req, res) => {
+  const us = new User(req.body);
+
+  try{
+    await us.save();
+    res.send(us);
+  }catch (error){
+    res.status(500).send(error);
+  }
+})
+
+// //Mengupdate user
+// router.put("/users/:id", async (req, res) => {
+//   try {
+    
+//   }
+// })
 
 //Menghapus user
 
