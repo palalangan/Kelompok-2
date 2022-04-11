@@ -39,6 +39,7 @@ router.post("/users", async (req, res) => {
   }
 })
 
+
 //Mengupdate user
 router.put("/users/:id", async (req, res) => {
   const us = new User(req.body);
@@ -53,15 +54,4 @@ router.put("/users/:id", async (req, res) => {
 })
 
 //Menghapus user
-router.delete("/users/:id", async (req, res) => {
-  try {
-    const us = await User.findByIdAndDelete(req.params.id);
-
-    if(!us) res.status(404).send("Data tidak ditemukan");
-    res.status(200).send();
-  } catch(error){
-    res.status(500).send(error);
-  }
-})
-
 module.exports = router;
