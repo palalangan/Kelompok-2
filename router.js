@@ -31,14 +31,13 @@ router.get("/users/:id", async (req, res) => {
 router.post("/users", async (req, res) => {
   const us = new User(req.body);
 
-  try{
+  try {
     await us.save();
     res.send(us);
-  }catch (error){
+  } catch (error) {
     res.status(500).send(error);
   }
-})
-
+});
 
 //Mengupdate user
 router.put("/users/:id", async (req, res) => {
@@ -47,11 +46,22 @@ router.put("/users/:id", async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.params.id, req.body);
     await User.save();
-    res.send(us)
-  } catch (error){
+    res.send(us);
+  } catch (error) {
     res.status(500).send(error);
   }
-})
+});
 
 //Menghapus user
+router.delete("/users/:id", async (req, res) => {
+  try {
+    const us = await User.findByIdAndDelete(req.params.id);
+
+    if (!us) res.status(404).send("Data tidak ditemukan");
+    res.status(200).send();
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 module.exports = router;
