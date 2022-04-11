@@ -39,13 +39,24 @@ router.post("/users", async (req, res) => {
   }
 })
 
-// //Mengupdate user
-// router.put("/users/:id", async (req, res) => {
+//Mengupdate user
+router.put("/users/:id", async (req, res) => {
+  const us = new User(req.body);
+
+  try {
+    await User.findByIdAndUpdate(req.params.id, req.body);
+    await User.save();
+    res.send(us)
+  } catch (error){
+    res.status(500).send(error);
+  }
+})
+
+// //Menghapus user
+// router.delete("/users/:id", async (req, res) => {
 //   try {
-    
+//     const food = await User.findByIdAndDelete(req.pa)
 //   }
 // })
-
-//Menghapus user
 
 module.exports = router;
