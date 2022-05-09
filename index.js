@@ -49,7 +49,7 @@ app.post("/signup", (req, res) => {
     console.log("Record Inserted Successfully");
   });
 
-  return res.redirect("signup_success.html");
+  return res.redirect("signin.html");
 });
 
 app
